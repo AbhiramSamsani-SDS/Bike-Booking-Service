@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RideFlow • Driver</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app-body">
+<header class="topbar">
+	<div class="logo dark">
+		<span>RF</span> RIDEFLOW
+	</div>
+	<div class="profile" id="profileButton">
+		<div>
+			<strong id="welcomeDriver">Driver</strong>
+			<small>Driver partner</small>
+		</div>
+		<div class="avatar" id="profileAvatar">D</div>
+		<div class="profile-menu hidden" id="profileMenu">
+			<label class="menu-item">📷 Change photo<input id="photoInput" type="file" accept="image/*" hidden></label>
+			<button class="menu-item" onclick="logout()">↗ Logout</button>
+			<button class="menu-item danger" onclick="deleteAccount()">⌫ Delete account</button>
+		</div>
+	</div>
+</header>
+<main class="container">
+	<section class="welcome">
+		<div>
+			<p class="eyebrow">DRIVER DASHBOARD</p>
+			<h1>Ready for the next ride?</h1>
+			<p class="muted">Track rides, earnings and withdrawals from one place.</p>
+		</div>
+		<div id="availabilityBadge" class="status-pill">● Checking status</div>
+	</section>
+	<section class="stats">
+		<article>
+			<span>Wallet earnings</span>
+			<strong id="driverBalance">₹0.00</strong>
+			<small>Available to withdraw</small>
+		</article>
+		<article>
+			<span>Total rides</span>
+			<strong id="totalRides">0</strong>
+			<small>Assigned rides</small>
+		</article>
+		<article>
+			<span>Driver status</span>
+			<strong id="driverStatus">—</strong>
+			<small>Current availability</small>
+		</article>
+	</section>
+	<section class="action-grid driver-action">
+		<article class="panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">EARNINGS</p>
+					<h2>Withdraw money</h2>
+				</div>
+				<span class="round-icon">₹</span>
+			</div>
+			<p class="muted">Withdraw from your earnings after solving a quick security question.</p>
+			<label>Withdrawal amount<input id="withdrawAmount" type="number" min="1" placeholder="₹ Enter amount"></label>
+			<button class="primary" onclick="openWithdrawModal()">Withdraw securely →</button>
+		</article>
+		<article class="panel accent-card">
+			<p class="eyebrow">DRIVER PARTNER</p>
+			<h2>Keep moving.</h2>
+			<p>Completed ride fares are credited automatically to your driver wallet.</p>
+			<div class="bike-art">🏍</div>
+		</article>
+	</section>
+	<section class="history-grid">
+		<article class="panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">ACTIVITY</p>
+					<h2>All rides</h2>
+				</div>
+				<span>5 per page</span>
+			</div>
+			<div id="rideHistory" class="list"></div>
+			<div class="pager">
+				<button id="ridePrev" onclick="changeRidePage(-1)">← Previous</button>
+				<span id="ridePageLabel">Page 1</span>
+				<button id="rideNext" onclick="changeRidePage(1)">Next →</button>
+			</div>
+		</article>
+		<article class="panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">EARNINGS</p>
+					<h2>Transactions</h2>
+				</div>
+				<span>5 per page</span>
+			</div>
+			<div id="transactionHistory" class="list"></div>
+			<div class="pager">
+				<button id="txPrev" onclick="changeTxPage(-1)">← Previous</button>
+				<span id="txPageLabel">Page 1</span>
+				<button id="txNext" onclick="changeTxPage(1)">Next →</button>
+			</div>
+		</article>
+	</section>
+</main>
+<div class="modal hidden" id="withdrawModal">
+	<div class="modal-card">
+		<button class="close" onclick="closeWithdrawModal()">×</button>
+		<p class="eyebrow">SECURITY CHECK</p>
+		<h2>Confirm withdrawal</h2>
+		<p id="withdrawQuestion" class="challenge">Loading…</p>
+		<small id="withdrawAttempts" class="muted"></small>
+		<div id="withdrawLockTimer" class="lock-timer hidden"></div>
+		<label>Your answer<input id="withdrawAnswer" type="number" placeholder="Answer"></label>
+		<div id="withdrawMessage" class="message"></div>
+		<button class="primary" onclick="verifyWithdraw()">Verify & withdraw</button>
+	</div>
+</div>
+<div id="toast" class="toast"></div>
+<script src="js/driver-dashboard.js"></script>
+</body>
+</html>

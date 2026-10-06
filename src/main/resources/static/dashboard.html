@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RideFlow • User</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app-body">
+<header class="topbar">
+	<div class="logo dark">
+		<span>RF</span> RIDEFLOW
+	</div>
+	<div class="profile" id="profileButton">
+		<div>
+			<strong id="welcomeUser">User</strong>
+			<small>User account</small>
+		</div>
+		
+		<div class="avatar" id="profileAvatar">U</div>
+		
+		<div class="profile-menu hidden" id="profileMenu">
+			<label class="menu-item">📷 Change photo<input id="photoInput" type="file" accept="image/*" hidden></label>
+			<button class="menu-item" onclick="logout()">↗ Logout</button>
+			<button class="menu-item danger" onclick="deleteAccount()">⌫ Delete account</button>
+		</div>
+	</div>
+</header>
+
+<main class="container">
+	<section class="welcome">
+		<div>
+			<p class="eyebrow">USER DASHBOARD</p>
+			<h1>Where are we going today?</h1>
+			<p class="muted">Book a ride, manage your wallet and track every trip.</p>
+		</div>
+		<div class="status-pill">● Service online</div>
+	</section>
+	<section class="stats">
+		<article>
+			<span>Wallet balance</span>
+			<strong id="balance">₹0.00</strong>
+			<small>Available to spend</small>
+		</article>
+		<article>
+			<span>Total rides</span>
+			<strong id="totalRides">0</strong>
+			<small>Your ride count</small>
+		</article>
+		<article>
+			<span>Drivers available</span>
+			<strong id="availableDrivers">0</strong>
+			<small>Ready nearby</small>
+		</article>
+	</section>
+	<section class="action-grid">
+		<article class="panel ride-panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">BOOK A RIDE</p>
+					<h2>Plan your trip</h2>
+				</div>
+				<span class="round-icon">🏍</span>
+			</div>
+			<label>Pickup location<input id="boarding" placeholder="e.g. Ameerpet"></label>
+			<div class="route-line"></div>
+			<label>Destination<input id="destination" placeholder="e.g. Hitech City"></label>
+			<button id="bookRideButton" class="primary" onclick="bookRide()">Find a ride →</button>
+			<div id="rideMessage" class="message"></div>
+		</article>
+		<article class="panel wallet-panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">WALLET</p>
+					<h2>Add money</h2>
+				</div>
+				<span class="round-icon">₹</span>
+			</div>
+			<p class="muted">Add funds after completing a quick security challenge.</p>
+			<label>Amount<input id="amount" type="number" min="1" placeholder="₹ Enter amount"></label>
+			<div class="quick">
+				<button onclick="setAmount(100)">+₹100</button>
+				<button onclick="setAmount(250)">+₹250</button>
+				<button onclick="setAmount(500)">+₹500</button>
+			</div>
+			<button class="secondary" onclick="openMoneyModal()">Continue securely →</button>
+		</article>
+	</section>
+	<section class="history-grid">
+		<article class="panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">ACTIVITY</p>
+					<h2>Ride history</h2>
+				</div>
+				<span>Latest 5</span>
+			</div>
+			<div id="rideHistory" class="list"></div>
+			<div class="pager">
+				<button id="ridePrev" onclick="changeRidePage(-1)">← Previous</button>
+				<span id="ridePageLabel">Page 1</span>
+				<button id="rideNext" onclick="changeRidePage(1)">Next →</button>
+			</div>
+		</article>
+		<article class="panel">
+			<div class="panel-head">
+				<div>
+					<p class="eyebrow">WALLET</p>
+					<h2>Transactions</h2>
+				</div>
+				<span>Latest 5</span>
+			</div>
+			<div id="transactionHistory" class="list"></div>
+			<div class="pager">
+				<button id="txPrev" onclick="changeTxPage(-1)">← Previous</button>
+				<span id="txPageLabel">Page 1</span>
+				<button id="txNext" onclick="changeTxPage(1)">Next →</button>
+			</div>
+		</article>
+	</section>
+</main>
+<div class="modal hidden" id="moneyModal">
+	<div class="modal-card">
+		<button class="close" onclick="closeMoneyModal()">×</button>
+		<p class="eyebrow">SECURITY CHECK</p>
+		<h2>Add money</h2>
+		<p id="moneyQuestion" class="challenge">Loading…</p>
+		<small id="moneyAttempts" class="muted"></small>
+		<div id="moneyLockTimer" class="lock-timer hidden"></div>
+		<label>Your answer<input id="moneyAnswer" type="number" placeholder="Answer"></label>
+		<div id="moneyMessage" class="message"></div>
+		<button class="primary" onclick="verifyAddMoney()">Verify & add money</button>
+	</div>
+</div>
+<div id="toast" class="toast"></div>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

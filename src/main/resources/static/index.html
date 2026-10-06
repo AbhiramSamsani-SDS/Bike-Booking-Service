@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RideFlow • Login</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-body">
+
+<div class="login-shell">
+
+	<section class="login-hero">
+		<div class="logo">
+			<span>RF</span> RIDEFLOW
+		</div>
+		<div>
+			<p class="eyebrow">MOVE SMARTER</p>
+			<h1>Your city.<br>Your ride.<br><em>On demand.</em></h1>
+			<p class="hero-copy">A premium bike-taxi demo built with Spring Boot. Fast booking, wallet payments and simple driver earnings.</p>
+		</div>
+		<div class="hero-badges">
+			<span>⚡ Quick pickup</span> <span>🛡 Secure wallet</span> <span>🏍 Live drivers</span>
+		</div>
+	</section>
+	
+	<section class="auth-wrap">
+	<div class="auth-card">
+		<div class="switcher">
+			<button id="userTab" class="active" onclick="selectRole('user')">User</button>
+			<button id="driverTab" onclick="selectRole('driver')">Driver</button>
+		</div>
+		<div id="loginView">
+			<p class="eyebrow" id="roleEyebrow">USER ACCESS</p>
+			<h2 id="loginTitle">Welcome back</h2>
+			<p class="muted" id="loginSub">Login to book your next ride.</p>
+			<form id="loginForm">
+				<label><span id="idLabel">User ID</span>
+					<input id="loginId" type="number" required placeholder="Enter your ID">
+				</label>
+				<label>Password
+					<input id="loginPassword" type="password" required placeholder="Enter your password">
+				</label>
+				<div id="loginMessage" class="message">
+				</div>
+				<button class="primary" type="submit">Login →</button>
+			</form>
+			<p class="account-line">New here? <button class="link" onclick="showRegister()">Create account</button></p>
+		</div>
+		<div id="registerView" class="hidden">
+		<p class="eyebrow">CREATE ACCOUNT</p>
+		<h2 id="registerTitle">Create user account</h2>
+		<p class="muted">Your generated ID will be shown after registration.</p>
+		<form id="registerForm">
+			<label>Name<input id="registerName" required placeholder="Your full name">
+			</label>
+			<label>Email<input id="registerEmail" type="email" required placeholder="you@example.com">
+			</label>
+			<label>Password<input id="registerPassword" type="password" minlength="4" required placeholder="Minimum 4 characters">
+			</label>
+			<div id="registerMessage" class="message">
+			</div>
+			<button class="primary" type="submit">Create account →</button>
+		</form>
+		<p class="account-line">Already registered? <button class="link" onclick="showLogin()">Back to login</button></p>
+		</div>
+	</div>
+	</section>
+</div>
+<script src="js/login.js"></script>
+</body>
+</html>
